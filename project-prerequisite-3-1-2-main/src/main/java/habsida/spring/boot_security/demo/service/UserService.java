@@ -2,7 +2,7 @@ package habsida.spring.boot_security.demo.service;
 
 import habsida.spring.boot_security.demo.model.User;
 import java.util.List;
-import java.util.Optional;
+
 
 public interface UserService {
 
@@ -11,8 +11,5 @@ public interface UserService {
     User createUser(User user);
     User findByUsername(String username);
     void deleteUser(Long id);
-
-    void updateUser(Long id, User updatedUser);
-
 }
 
