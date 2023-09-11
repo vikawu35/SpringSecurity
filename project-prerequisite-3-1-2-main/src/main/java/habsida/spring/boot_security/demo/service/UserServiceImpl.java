@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -56,15 +56,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
-    }
-
-    @Override
-    public void updateUser(Long id, User updatedUser) {
-        userRepository.findById(id).ifPresent(user -> {user.setFirstName(updatedUser.getFirstName());
-            user.setLastName(updatedUser.getLastName());
-            user.setUsername(updatedUser.getUsername());
-            user.setPassword(updatedUser.getPassword());
-        });
     }
 
     @Override
