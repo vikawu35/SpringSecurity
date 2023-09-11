@@ -1,15 +1,12 @@
 package habsida.spring.boot_security.demo.model;
 
-
-
-import lombok.*;
+import lombok.Getter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.Collection;
@@ -22,16 +19,17 @@ import java.util.Set;
 public class User implements UserDetails {
 
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @NotEmpty(message = "Field cannot be empty")
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Wrong format")
     private String firstName;
 
+    @Getter
     @NotEmpty(message = "Field cannot be empty")
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Wrong format")
     private String lastName;
 
     @Column(unique = true)
@@ -42,6 +40,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Field cannot be empty")
     private String password;
 
+    @Getter
     @Fetch(FetchMode.JOIN)
     @ManyToMany
     @JoinTable(name = "users_roles",
@@ -60,24 +59,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public void setLastName(String lastName) {
@@ -91,10 +78,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
     }
 
     public void setRoles(Set<Role> roles) {
